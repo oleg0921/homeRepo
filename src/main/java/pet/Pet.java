@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-@ComponentScan("pet")
 public class Pet {
 
     @Autowired
