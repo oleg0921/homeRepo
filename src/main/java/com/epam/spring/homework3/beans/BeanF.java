@@ -1,6 +1,6 @@
 package com.epam.spring.homework3.beans;
 
-public class BeanF {
+public class BeanF implements Bean{
 
     private String name;
     private int value;
@@ -21,5 +21,15 @@ public class BeanF {
                 "name='" + name + '\'' +
                 ", value=" + value +
                 '}';
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public int getValue() {
+        return value;
     }
 }

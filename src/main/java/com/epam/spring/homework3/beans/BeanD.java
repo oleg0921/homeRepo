@@ -2,7 +2,7 @@ package com.epam.spring.homework3.beans;
 
 import org.springframework.beans.factory.annotation.Value;
 
-public class BeanD {
+public class BeanD implements Bean {
     @Value("${beanD.name}")
     private String name;
     @Value("${beanD.value}")
@@ -36,5 +36,15 @@ public class BeanD {
                 "name='" + name + '\'' +
                 ", value=" + value +
                 '}';
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public int getValue() {
+        return value;
     }
 }

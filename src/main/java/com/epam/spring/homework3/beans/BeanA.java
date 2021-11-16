@@ -3,7 +3,7 @@ package com.epam.spring.homework3.beans;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
-public class BeanA implements InitializingBean, DisposableBean {
+public class BeanA implements InitializingBean, DisposableBean,Bean {
     private String name;
     private int value;
 
@@ -31,5 +31,15 @@ public class BeanA implements InitializingBean, DisposableBean {
     @Override
     public void destroy() throws Exception {
         System.out.println(this.getClass().getSimpleName() + " destroy");
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public int getValue() {
+        return value;
     }
 }
