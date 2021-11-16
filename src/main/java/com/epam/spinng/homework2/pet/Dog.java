@@ -1,15 +1,19 @@
-package pet;
-import abstraction.Animal;
+package com.epam.spinng.homework2.pet;
+
+
+import com.epam.spinng.homework2.abstraction.Animal;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
-@Order(2)
-public class Cat implements Animal {
+@Order(1)
+public class Dog implements Animal {
 
-    public Cat(){
+
+    public Dog(){
 
     }
+
 
     @Override
     public String getAnimalName() {

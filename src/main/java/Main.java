@@ -1,8 +1,7 @@
-import config.BeansConfig;
-import config.PetConfig;
+import com.epam.spinng.homework2.config.BeansConfig;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import pet.Pet;
+import com.epam.spinng.homework2.pet.Pet;
 
 
 public class Main {

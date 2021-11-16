@@ -1,30 +1,30 @@
-package config;
+package com.epam.spinng.homework2.config;
 
 
-import beans.BeanA;
-import beans.BeanB;
-import beans.BeanC;
+import com.epam.spinng.homework2.beans.BeanA;
+import com.epam.spinng.homework2.beans.BeanB;
+import com.epam.spinng.homework2.beans.BeanC;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@ComponentScan("beans")
+@ComponentScan("com.epam.spinng.homework2.beans")
 @Import(OtherConfig.class)
 public class BeansConfig {
 
-    @Bean
+
     public BeanA beanA() {
         return new BeanA();
     }
 
-    @Bean
+
     public BeanB beanB() {
         return new BeanB();
     }
 
-    @Bean
+
     public BeanC beanC() {
         return new BeanC();
     }

@@ -1,6 +1,6 @@
-package other;
+package com.epam.spinng.homework2.other;
 
-import beans.BeanA;
+import com.epam.spinng.homework2.beans.BeanA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

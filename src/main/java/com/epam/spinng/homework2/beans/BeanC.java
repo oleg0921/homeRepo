@@ -1,4 +1,4 @@
-package beans;
+package com.epam.spinng.homework2.beans;
 
 import org.springframework.stereotype.Component;
 

@@ -1,15 +1,14 @@
-package pet;
+package com.epam.spinng.homework2.pet;
 
-
-import abstraction.Animal;
+import com.epam.spinng.homework2.abstraction.Animal;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Spider implements Animal {
+public class Cheetah implements Animal {
 
-    public Spider(){
-
+    public Cheetah() {
     }
+
 
 
     @Override

@@ -1,14 +1,14 @@
-package config;
+package com.epam.spinng.homework2.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import other.OtherBeanB;
-import other.OtherBeanC;
+import com.epam.spinng.homework2.other.OtherBeanB;
+import com.epam.spinng.homework2.other.OtherBeanC;
 
 @Configuration
-@ComponentScan("other")
+@ComponentScan("com.epam.spinng.homework2.other")
 @Import(PetConfig.class)
 public class OtherConfig {
 

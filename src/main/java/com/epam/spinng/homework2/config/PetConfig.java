@@ -1,14 +1,14 @@
-package config;
+package com.epam.spinng.homework2.config;
 
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.*;
-import pet.Cheetah;
-import pet.Spider;
+import com.epam.spinng.homework2.pet.Cheetah;
+import com.epam.spinng.homework2.pet.Spider;
 
 
 @Configuration
-@ComponentScan(basePackages = {"pet"}, excludeFilters = {
+@ComponentScan(basePackages = {"com.epam.spinng.homework2.pet"}, excludeFilters = {
         @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = Spider.class)})
 
 public class PetConfig {
