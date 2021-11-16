@@ -1,10 +1,10 @@
-package config;
-import beans.BeanF;
+package com.epam.spring.homework3.config;
+import com.epam.spring.homework3.beans.BeanF;
 import org.springframework.context.annotation.*;
 
 @Configuration
 @PropertySource("application.properties")
-@ComponentScan("beans")
+@ComponentScan("com.epam.spring.homework3.beans")
 @Import(OtherBeansConfig.class)
 public class OtherBeansConfig {
 

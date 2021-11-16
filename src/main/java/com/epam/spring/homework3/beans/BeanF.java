@@ -1,19 +1,18 @@
-package beans;
+package com.epam.spring.homework3.beans;
 
+public class BeanF {
 
-import org.springframework.stereotype.Component;
-
-@Component
-public class BeanE {
     private String name;
     private int value;
 
-    public BeanE(String name, int value) {
+
+    public BeanF(String name, int value) {
         this.name = name;
         this.value = value;
     }
 
-    public BeanE() {
+    public BeanF(){
+
     }
 
     @Override
@@ -23,5 +22,4 @@ public class BeanE {
                 ", value=" + value +
                 '}';
     }
-
 }

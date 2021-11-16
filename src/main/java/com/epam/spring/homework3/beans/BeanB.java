@@ -1,11 +1,15 @@
-package beans;
+package com.epam.spring.homework3.beans;
+
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
-public class BeanC {
-    @Value("${beanC.name}")
+@Component
+public class BeanB {
+
+    @Value("${beanB.name}")
     private String name;
-    @Value("${beanC.value}")
+    @Value("${beanB.value}")
     private int value;
 
     private void customInitMethod(){
@@ -19,13 +23,12 @@ public class BeanC {
     private void customDestroyMethod(){
         System.out.println("destroy method " + this.getClass().getSimpleName() );
     }
-
-    public BeanC(String name, int value) {
-        this.name = name;
-        this.value = value;
+    public BeanB() {
     }
 
-    public BeanC() {
+    public BeanB(String name, int value) {
+        this.name = name;
+        this.value = value;
     }
 
     @Override

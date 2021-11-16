@@ -1,6 +1,6 @@
-package config;
+package com.epam.spring.homework3.config;
 
-import beans.*;
+import com.epam.spring.homework3.beans.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.DependsOn;
 

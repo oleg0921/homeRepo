@@ -1,13 +1,12 @@
-package beans;
+package com.epam.spring.homework3.beans;
 
 import org.springframework.beans.factory.annotation.Value;
 
-public class BeanD {
-    @Value("${beanD.name}")
+public class BeanC {
+    @Value("${beanC.name}")
     private String name;
-    @Value("${beanD.value}")
+    @Value("${beanC.value}")
     private int value;
-
 
     private void customInitMethod(){
         System.out.println("init method " + this.getClass().getSimpleName() );
@@ -21,13 +20,12 @@ public class BeanD {
         System.out.println("destroy method " + this.getClass().getSimpleName() );
     }
 
-    public BeanD(String name, int value) {
+    public BeanC(String name, int value) {
         this.name = name;
         this.value = value;
     }
 
-    public BeanD(){
-
+    public BeanC() {
     }
 
     @Override

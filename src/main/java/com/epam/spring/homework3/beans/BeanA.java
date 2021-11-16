@@ -1,4 +1,4 @@
-package beans;
+package com.epam.spring.homework3.beans;
 
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
