@@ -1,4 +1,4 @@
-package com.epam.spring.homework1;
+package com.epam.spring.homework4;
 
 public class Main {
 
