@@ -6,11 +6,6 @@ import lombok.*;
 
 @Data
 @Builder
-@Getter
-@Setter
-@AllArgsConstructor
-@EqualsAndHashCode
-@ToString
 @NoArgsConstructor
 public class User  {
     private  Long id;
