@@ -11,7 +11,6 @@ public class Spider implements Animal {
 
     }
 
-
     @Override
     public String getAnimalName() {
         return this.getClass().getSimpleName();
