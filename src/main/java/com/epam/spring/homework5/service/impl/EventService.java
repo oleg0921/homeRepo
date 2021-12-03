@@ -20,27 +20,23 @@ public class EventService implements com.epam.spring.homework5.service.EventServ
 
     @Override
     public Event getEvent (Long id) {
-        return eventRepository.getEntity(id);
+        return eventRepository.getById(id);
     }
 
     @Override
     public List<Event> getEvents () {
-        return eventRepository.getEntities();
+        return eventRepository.findAll();
     }
 
     @Override
     public void createEvent (Event event) {
 
-        eventRepository.createEntity(event);
+        eventRepository.save(event);
     }
 
-    @Override
-    public void updateEvent (Long id, Event event) {
-        eventRepository.updateEntity(id, event);
-    }
 
     @Override
     public void deleteEvent (Long id) {
-        eventRepository.deleteEntity(id);
+        eventRepository.deleteById(id);
     }
 }

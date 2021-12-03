@@ -1,18 +1,9 @@
 package com.epam.spring.homework5.repository;
 
 import com.epam.spring.homework5.model.Event;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface EventRepository {
-    Event getEntity (Long id);
-
-    List<Event> getEntities ();
-
-    Long createEntity (Event user);
-
-    void updateEntity (Long id, Event user);
-
-    void deleteEntity (Long login);
-
+public interface EventRepository extends JpaRepository<Event, Long> {
 }

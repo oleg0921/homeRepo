@@ -17,7 +17,6 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class UserDto {
 
-
     private  Long id;
     private  String firstName;
     private  String lastName;
@@ -25,5 +24,5 @@ public class UserDto {
     private String email;
     @NotBlank
     private String password;
-    private UserRole userRole;
+    private Long roleId;
 }

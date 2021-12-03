@@ -1,18 +1,11 @@
 package com.epam.spring.homework5.repository;
 
 import com.epam.spring.homework5.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface UserRepository {
-    User getEntity (Long id);
+public interface UserRepository extends JpaRepository<User, Long> {
 
-    List<User> getEntities ();
-
-    Long createEntity (User user);
-
-    void updateEntity (Long id, User user);
-
-    void deleteEntity (Long login);
 }
 

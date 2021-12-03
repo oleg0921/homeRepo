@@ -19,26 +19,22 @@ public class ReportService  implements com.epam.spring.homework5.service.ReportS
      private final ReportRepository reportRepository;
     @Override
     public Report getReport (Long id) {
-        return reportRepository.getEntity(id);
+        return reportRepository.getById(id);
     }
 
     @Override
     public List<Report> getReports () {
-        return reportRepository.getEntities();
+        return reportRepository.findAll();
     }
 
     @Override
     public void createReport (Report report) {
-         reportRepository.createEntity(report);
+         reportRepository.save(report);
     }
 
-    @Override
-    public void updateReport (Long id, Report report) {
-        reportRepository.updateEntity(id, report);
-    }
 
     @Override
     public void deleteReport (Long id) {
-        reportRepository.deleteEntity(id);
+        reportRepository.deleteById(id);
     }
 }

@@ -14,7 +14,6 @@ public interface EventService {
 
     void createEvent (Event event);
 
-    void updateEvent (Long id, Event event);
 
     void deleteEvent (Long id);
 }

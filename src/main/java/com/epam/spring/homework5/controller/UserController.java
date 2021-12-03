@@ -6,6 +6,7 @@ import com.epam.spring.homework5.exeption.NotFoundException;
 import com.epam.spring.homework5.model.User;
 import com.epam.spring.homework5.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,12 +23,15 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private DozerBeanMapper dozerBeanMapper;
+
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/users")
     public List<UserDto> getListUsers() {
         return userService.listUsers()
                 .stream()
-                .map(this::mapUserToUserDto)
+                .map(u -> dozerBeanMapper.map(u, UserDto.class))
                 .collect(Collectors.toList());
     }
 
@@ -35,35 +39,36 @@ public class UserController {
     @GetMapping(value = "/user/{id}")
     public UserDto getUser (@PathVariable Long id) {
 
-        User user =userService.getUser(id);
+        User user = new User();
+        try{
+             user =userService.getUser(id);
+        }catch (Exception e){
+            System.out.println(e.getCause());
+        }
+
         if(user == null) {
              throw new NotFoundException("Invalid user id : ");
         }
-        return mapUserToUserDto(userService.getUser(id));
+        return dozerBeanMapper.map(userService.getUser(id),UserDto.class);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/user")
     public UserDto createUser(@RequestBody @Valid UserDto userDto) {
-        User user = mapUserDtoToUser(userDto);
+        User user = dozerBeanMapper.map(userDto,User.class);
         if(user == null) {
             throw new NotFoundException("Invalid user");
         }
-        userService.createUser(user);
-        return mapUserToUserDto(user);
-    }
-
-    @ResponseStatus(HttpStatus.OK)
-    @PutMapping(value = "/user/{id}")
-    public UserDto updateUser(@PathVariable Long login, @RequestBody @Valid UserDto userDto) {
-        User user = mapUserDtoToUser(userDto);
-        if(user == null) {
-            throw new NotFoundException("Invalid user login : " + login);
+        try{
+            userService.createUser(user);
+        }catch (Exception e){
+            System.out.println(e.getCause());
         }
-        userService.updateUser(login, user);
-        return mapUserToUserDto(user);
 
+        return dozerBeanMapper.map(user,UserDto.class);
     }
+
+
 
     @DeleteMapping(value = "/user/{id}")
     public ResponseEntity<Void> deleteUser (@PathVariable Long id) {
@@ -76,27 +81,6 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    private User mapUserDtoToUser(UserDto userDto) {
-        return User.builder()
-                .id(userDto.getId())
-                .firstName(userDto.getFirstName())
-                .lastName(userDto.getLastName())
-                .email(userDto.getEmail())
-                .password(userDto.getPassword())
-                .userRole(userDto.getUserRole())
-                .build();
-    }
-
-    private UserDto mapUserToUserDto(User user) {
-        return UserDto.builder()
-                .id(user.getId())
-                .firstName(user.getFirstName())
-                .lastName(user.getLastName())
-                .email(user.getEmail())
-                .password(user.getPassword())
-                .userRole(user.getUserRole())
-                .build();
-    }
 
 
     }

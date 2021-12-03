@@ -2,11 +2,13 @@ package com.epam.spring.homework5.controller;
 
 
 import com.epam.spring.homework5.controller.dto.ReportDto;
+import com.epam.spring.homework5.controller.dto.UserDto;
 import com.epam.spring.homework5.exeption.NotFoundException;
 import com.epam.spring.homework5.model.Report;
 import com.epam.spring.homework5.model.User;
 import com.epam.spring.homework5.service.ReportService;
 import lombok.RequiredArgsConstructor;
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,12 +25,15 @@ public class ReportController {
     @Autowired
     private ReportService reportService;
 
+    @Autowired
+    private DozerBeanMapper dozerBeanMapper;
+
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/report")
     public List<ReportDto> getAllTopics() {
         return reportService.getReports()
                 .stream()
-                .map(this::mapReportToReportdtoDto)
+                .map(u -> dozerBeanMapper.map(u, ReportDto.class))
                 .collect(Collectors.toList());
     }
 
@@ -39,31 +44,22 @@ public class ReportController {
         if (report == null){
             throw new NotFoundException("Invalid report id : ");
         }
-        return mapReportToReportdtoDto(report);
+        return dozerBeanMapper.map(report,ReportDto.class);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/report")
     public ReportDto createTopic(@RequestBody @Valid ReportDto topicDto) {
-        Report report = mapTopicDtoToTopic(topicDto);
+        Report report = dozerBeanMapper.map(topicDto,Report.class);
         if (report == null){
             throw new NotFoundException("Invalid report  : ");
         }
         reportService.createReport(report);
-        return mapReportToReportdtoDto(report);
+        return dozerBeanMapper.map(report,ReportDto.class);
 
     }
 
-    @ResponseStatus(HttpStatus.OK)
-    @PutMapping(value = "/report/{id}")
-    public ReportDto updateTopic(@PathVariable Long id, @RequestBody @Valid ReportDto topicDto) {
-        Report report = mapTopicDtoToTopic(topicDto);
-        if (report == null){
-            throw new NotFoundException("Invalid report id : ");
-        }
-        reportService.updateReport(id, report);
-        return mapReportToReportdtoDto(reportService.getReport(id));
-    }
+
 
     @DeleteMapping(value = "/report/{id}")
     public ResponseEntity<Void> deleteTopic(@PathVariable Long id) {
@@ -76,21 +72,4 @@ public class ReportController {
         return ResponseEntity.noContent().build();
     }
 
-
-    private ReportDto mapReportToReportdtoDto (Report topic) {
-        return ReportDto.builder()
-                .id(topic.getId())
-                .topic(topic.getTopic())
-                .languages(topic.getLanguages())
-                .build();
-
-    }
-
-    private Report mapTopicDtoToTopic(ReportDto topicDto) {
-        return Report.builder()
-                .id(topicDto.getId())
-                .topic(topicDto.getTopic())
-                .languages(topicDto.getLanguages())
-                .build();
-    }
 }

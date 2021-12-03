@@ -20,28 +20,25 @@ public class UserService implements com.epam.spring.homework5.service.UserServic
     @Override
     public User getUser (Long id) {
         log.info("getUser by id {}", id);
-        return userRepository.getEntity(id);
+        return userRepository.getById(id);
     }
 
     @Override
     public List<User> listUsers () {
         log.info("getUser all user ");
-        return userRepository.getEntities();
+        return userRepository.findAll();
     }
 
     @Override
     public void createUser (User user) {
         log.info("getUser by id {}", user.getId());
-         userRepository.createEntity(user);
+         userRepository.save(user);
     }
 
-    @Override
-    public void updateUser (Long id, User user) {
-        userRepository.updateEntity(id,user);
-    }
+
 
     @Override
     public void deleteUser (Long id) {
-        userRepository.deleteEntity(id);
+        userRepository.deleteById(id);
     }
 }
